@@ -1,0 +1,49 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1>Welcome to CozyCribs</h1>
+            <p>Discover amazing places to stay around the world. Create unforgettable memories with our curated listings.</p>
+            <div class="hero-buttons">
+                <a href="/listings" class="btn btn-primary btn-lg">Explore Listings</a>
+                <% if (!currUser) { %>
+                    <a href="/signup" class="btn btn-outline-light btn-lg">Join Now</a>
+                <% } %>
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="feature-card text-center">
+                    <i class="fa-solid fa-compass fa-3x text-primary mb-3"></i>
+                    <h4>Explore Destinations</h4>
+                    <p>Find unique accommodations in breathtaking locations worldwide.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card text-center">
+                    <i class="fa-solid fa-heart fa-3x text-danger mb-3"></i>
+                    <h4>Trusted Reviews</h4>
+                    <p>Read authentic reviews from real travelers to make informed decisions.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card text-center">
+                    <i class="fa-solid fa-star fa-3x text-warning mb-3"></i>
+                    <h4>Top Rated Stays</h4>
+                    <p>Experience exceptional hospitality with our highly rated properties.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cta-section bg-light py-5">
+        <div class="container text-center">
+            <h2>Ready to Start Your Journey?</h2>
+            <p>Join thousands of travelers who trust CozyCribs for their perfect getaway.</p>
+            <a href="/listings" class="btn btn-primary btn-lg">Browse All Listings</a>
+        </div>
+    </div>
+</body>

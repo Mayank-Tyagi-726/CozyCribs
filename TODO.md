@@ -1,0 +1,6 @@
+- [x] Fixed the error by downgrading Express from version 5.1.0 to 4.18.2
+- [x] Update models/review.js to add author field (already implemented)
+- [x] Update app.js POST /listings/:id/reviews to set author (already implemented)
+- [x] Update app.js show route to populate reviews with author (already implemented)
+- [x] Add DELETE /listings/:id/reviews/:reviewId route in app.js (already implemented)
+- [x] Update views/listings/show.ejs to display reviews and delete forms (already implemented)

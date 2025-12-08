@@ -1,0 +1,54 @@
+<% layout("/layouts/boilerplate") %>
+<div class="row">
+    <div class="col-8 offset-2">
+<body> 
+    <h1>Make changes to your listing....</h1>
+    <form action="/listings/<%=listing._id%>?_method=PUT" method="POST" class="needs-validation" novalidate>
+
+    <div>
+            <label for="title" class="form-label">Title</label>
+             <input name="listing[title]" id="" placeholder="" value="<%=listing.title%>" class="form-control" required>
+    </div><br>
+
+
+    <div><label for="description" class="form-label">Description</label>
+            <textarea name="listing[description]" id="" placeholder="" rows="5" cols="10" class="form-control" required><%=listing.description%></textarea>
+
+    </div><br>
+
+ 
+  
+
+
+    <div class="row">
+          <div class="col-md-4"><label for="price" class="form-label">Price</label>
+        <input name="listing[price]" id="" placeholder="" value="<%=listing.price%>" class="form-control" required>
+
+         <div class="col-md-8"><label for="Country" class="form-label">Country</label>
+        <input name="listing[country]" id="" placeholder="" value="<%=listing.country%>" class="form-control" required >
+    </div>
+    </div>
+
+
+    </div>
+
+
+
+    <div><label for="Location" class="form-label">Location</label>
+        <input name="listing[location]" id="" placeholder="" class="form-control" value="<%=listing.location%>" required>
+    </div><br>
+
+
+   
+       <br>
+        
+             
+        
+        <button class="btn btn-dark edit-button">CONFIRM</button>
+        <br><br><br>
+<br>
+    </form>
+       
+</body>
+</div>
+</div>

@@ -1,0 +1,105 @@
+<% layout("/layouts/boilerplate") %>
+<div class="new-listing-container">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <div class="form-header">
+                    <h1 class="form-title">
+                        <i class="fas fa-plus-circle"></i> Create New Listing
+                    </h1>
+                    <p class="form-subtitle">Share your amazing place with the world</p>
+                </div>
+
+                <div class="form-card">
+                    <form action="/listings" method="POST" class="needs-validation" novalidate enctype="multipart/form-data">
+                        <div class="form-section">
+                            <h3 class="section-title">
+                                <i class="fas fa-info-circle"></i> Basic Information
+                            </h3>
+
+                            <div class="form-group">
+                                <label for="title" class="form-label">
+                                    <i class="fas fa-heading"></i> Title
+                                </label>
+                                <input type="text" name="listing[title]" placeholder="Add a catchy title" class="form-control" required>
+                                <div class="invalid-feedback">This is a required field</div>
+                                <div class="valid-feedback">This is something good and catchy!</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="description" class="form-label">
+                                    <i class="fas fa-align-left"></i> Description
+                                </label>
+                                <textarea name="listing[description]" placeholder="Describe your place..." class="form-control" rows="4" required></textarea>
+                                <div class="invalid-feedback">Please provide a description</div>
+                                <div class="valid-feedback">Great description!</div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3 class="section-title">
+                                <i class="fas fa-camera"></i> Media
+                            </h3>
+
+                            <div class="form-group">
+                                <label for="image" class="form-label">
+                                    <i class="fas fa-upload"></i> Upload Image
+                                </label>
+                                <input type="file" name="listing[image]" class="form-control" accept="image/*" required>
+                                <div class="invalid-feedback">Please upload an image</div>
+                                <div class="valid-feedback">Perfect image!</div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3 class="section-title">
+                                <i class="fas fa-map-marked-alt"></i> Location & Pricing
+                            </h3>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="price" class="form-label">
+                                            <i class="fas fa-rupee-sign"></i> Price per night
+                                        </label>
+                                        <input type="number" name="listing[price]" placeholder="1200" class="form-control" required>
+                                        <div class="invalid-feedback">Please enter a valid price</div>
+                                        <div class="valid-feedback">Great price!</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="country" class="form-label">
+                                            <i class="fas fa-globe"></i> Country
+                                        </label>
+                                        <input type="text" name="listing[country]" placeholder="India" class="form-control" required>
+                                        <div class="invalid-feedback">Please enter your country</div>
+                                        <div class="valid-feedback">Nice!</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="location" class="form-label">
+                                    <i class="fas fa-map-marker-alt"></i> Location
+                                </label>
+                                <input type="text" name="listing[location]" placeholder="City, State" class="form-control" required>
+                                <div class="invalid-feedback">Please enter a valid location</div>
+                                <div class="valid-feedback">Perfect location!</div>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn add-listing-btn">
+                                <i class="fas fa-plus"></i> Create Listing
+                            </button>
+                            <a href="/listings" class="btn cancel-btn">
+                                <i class="fas fa-times"></i> Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
