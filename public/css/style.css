@@ -939,7 +939,7 @@ body{
 }
 
 .listing-title {
-    color: white;
+    color: rgb(0, 0, 0);
     font-size: 3rem;
     font-weight: 700;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
