@@ -31,7 +31,6 @@ app.use(express.static(path.join(__dirname,"/uploads")));
 
 
 
-
 //Database.....
 main().then(()=>{
     console.log("connected to Database")
@@ -264,7 +263,5 @@ app.use((err,req,res,next)=>{
 
 
 
-
-app.listen(8080,()=>{
-    console.log("listening to the server");
-})
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log("Server running on port", port));
