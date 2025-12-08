@@ -10,7 +10,7 @@
                 <div class="listing-card">
                     <div class="card">
                         <div class="image-container">
-                            <img src="<%=listing.image%>" class="card-img-top show-img" alt="listing_image">
+                            <img src="<%= listing.image.startsWith('/uploads/') ? listing.image : '/uploads/' + listing.image.split('/').pop() %>" class="card-img-top show-img" alt="listing_image">
                             <div class="image-overlay"></div>
                         </div>
                         <div class="card-body">
@@ -40,17 +40,11 @@
                     </div>
                 </div>
 
-   
-   
 <%if(currUser && currUser._id && listing.owner && listing.owner._id && currUser._id.equals(listing.owner._id)){%>
+<div class="buttonsid">
+    <a href="/listings/<%=listing._id%>/edit" class="btn btn-dark btn-id">Edit</a>
+    <form action="/listings/<%=listing._id%>?_method=DELETE" method="POST"><button class="btn btn-dark btn-id_a">Delete</button></form>
 </div>
- <div class="buttonsid ">
-         <a href="/listings/<%=listing._id%>/edit" class="btn btn-dark btn-id">Edit</a>
-
-
-    
-        <form action="/listings/<%=listing._id%>?_method=DELETE" method="POST"><button class="btn btn-dark btn-id_a">Delete</button></form>
-    </div>  
 <%}%>
 <hr>
                     <div class="review-form-container">

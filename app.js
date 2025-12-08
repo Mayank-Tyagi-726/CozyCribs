@@ -16,7 +16,15 @@ const User = require("./models/user.js");
 const {isLoggedIn} = require("./middleware.js");
 const {saveRedirectUrl} = require("./middleware.js");
 const multer  = require('multer')
-const upload = multer({ dest: 'uploads/' })
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/')
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + path.extname(file.originalname))
+    }
+});
+const upload = multer({ storage: storage })
 
 
 
@@ -102,7 +110,7 @@ app.post("/listings", isLoggedIn, upload.single('listing[image]'), wrapAsync(asy
 
     });
     if(req.file) {
-        newlisting.image = req.file.path;
+        newlisting.image = '/uploads/' + req.file.filename;
     }
     newlisting.owner = req.user._id;
 
