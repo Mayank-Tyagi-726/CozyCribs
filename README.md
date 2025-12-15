@@ -79,13 +79,23 @@ Copy code
 -Landing Page
 ![Landing Page](screenshot/home.png)
 
-- PG Listings Page  
-- Search & Filter View  
-- Listing Details Page  
-- Booking & Availability Flow  
-- Login & Signup Screens  
+- PG Listings Page
+  ![Listing Page](screenshot/listingpage.png)
+- Search & Filter View
+  ![filtering](screenshot/filtering.png)
+- Listing Details Page
+  ![listing details](screenshot/showing.png)
+- Booking & Availability Flow
+  ![booking flow](screenshot/bookingsection.png)
+- Creating and Hosting Page
+  ![hosting](screenshot/create1.png)
+  ![hosting](screenshot/create2.png)  
+- Login & Signup Screens
+  ![login & signup](screenshot/signup.png)
+  ![login & signup](screenshot/login.png)
 
-_(Screenshots intentionally excluded from the repository preview and can be added later.)_
+
+
 
 ---
 
