@@ -88,15 +88,30 @@ function handleBookNow(listingId) {
   alert('🎉 Booking functionality is coming soon!\n\nYou will be able to:\n• Select dates\n• Choose guests\n• Make payments\n• Receive confirmations\n\nStay tuned for this feature!');
 }
 
+
 // Listings Page Filter Functionality
 document.addEventListener('DOMContentLoaded', function() {
-  // Get filter elements
+  // Get desktop filter elements
   const searchFilter = document.getElementById('searchFilter');
   const locationFilter = document.getElementById('locationFilter');
   const countryFilter = document.getElementById('countryFilter');
   const priceFilter = document.getElementById('priceFilter');
   const priceValue = document.getElementById('priceValue');
   const resetBtn = document.getElementById('resetFilters');
+  
+  // Get mobile filter elements
+  const searchFilterMobile = document.getElementById('searchFilterMobile');
+  const locationFilterMobile = document.getElementById('locationFilterMobile');
+  const countryFilterMobile = document.getElementById('countryFilterMobile');
+  const priceFilterMobile = document.getElementById('priceFilterMobile');
+  const priceValueMobile = document.getElementById('priceValueMobile');
+  const resetBtnMobile = document.getElementById('resetFiltersMobile');
+  
+  // Mobile filter toggle elements
+  const filterToggle = document.getElementById('filterToggle');
+  const filterContent = document.getElementById('filterContent');
+  
+  // Common elements
   const listingsGrid = document.getElementById('listingsGrid');
   const noResults = document.getElementById('noResults');
   const currentCount = document.getElementById('current-count');
@@ -105,12 +120,43 @@ document.addEventListener('DOMContentLoaded', function() {
   const listingItems = document.querySelectorAll('.listing-item');
   const totalListings = listingItems.length;
 
+
+  // Get current filter values (from either desktop or mobile, whichever is active)
+  function getCurrentFilters() {
+    const searchTerm = (searchFilter?.value || searchFilterMobile?.value || '').toLowerCase().trim();
+    const selectedLocation = locationFilter?.value || locationFilterMobile?.value || '';
+    const selectedCountry = countryFilter?.value || countryFilterMobile?.value || '';
+    const maxPrice = parseInt(priceFilter?.value || priceFilterMobile?.value || '0');
+    
+    return { searchTerm, selectedLocation, selectedCountry, maxPrice };
+  }
+
+  // Set filter values in both desktop and mobile
+  function setFilterValues(search = '', location = '', country = '', price = null) {
+    if (searchFilter) searchFilter.value = search;
+    if (searchFilterMobile) searchFilterMobile.value = search;
+    
+    if (locationFilter) locationFilter.value = location;
+    if (locationFilterMobile) locationFilterMobile.value = location;
+    
+    if (countryFilter) countryFilter.value = country;
+    if (countryFilterMobile) countryFilterMobile.value = country;
+    
+    if (price !== null) {
+      if (priceFilter) {
+        priceFilter.value = price;
+        updatePriceDisplay();
+      }
+      if (priceFilterMobile) {
+        priceFilterMobile.value = price;
+        updatePriceDisplayMobile();
+      }
+    }
+  }
+
   // Filter function
   function filterListings() {
-    const searchTerm = searchFilter.value.toLowerCase().trim();
-    const selectedLocation = locationFilter.value;
-    const selectedCountry = countryFilter.value;
-    const maxPrice = parseInt(priceFilter.value);
+    const { searchTerm, selectedLocation, selectedCountry, maxPrice } = getCurrentFilters();
 
     let visibleCount = 0;
 
@@ -157,23 +203,62 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // Update price display
+
+  // Update price display for desktop
   function updatePriceDisplay() {
-    const value = parseInt(priceFilter.value);
-    priceValue.textContent = `₹${value.toLocaleString()}`;
+    if (priceFilter && priceValue) {
+      const value = parseInt(priceFilter.value);
+      priceValue.textContent = `₹${value.toLocaleString()}`;
+    }
   }
 
-  // Reset all filters
+  // Update price display for mobile
+  function updatePriceDisplayMobile() {
+    if (priceFilterMobile && priceValueMobile) {
+      const value = parseInt(priceFilterMobile.value);
+      priceValueMobile.textContent = `₹${value.toLocaleString()}`;
+    }
+  }
+
+  // Reset all filters (both desktop and mobile)
   function resetFilters() {
-    searchFilter.value = '';
-    locationFilter.value = '';
-    countryFilter.value = '';
-    priceFilter.value = priceFilter.max;
-    updatePriceDisplay();
+    setFilterValues('', '', '', priceFilter?.max || priceFilterMobile?.max || 0);
     filterListings();
   }
 
-  // Event listeners
+  // Mobile filter toggle functionality
+  function toggleFilters() {
+    if (!filterToggle || !filterContent) return;
+    
+    const isExpanded = filterContent.classList.contains('expanded');
+    
+    if (isExpanded) {
+      // Collapse filters
+      filterContent.classList.remove('expanded');
+      filterToggle.classList.remove('expanded');
+      filterToggle.innerHTML = '<i class="fas fa-filter"></i><span>Filter Properties</span><i class="fas fa-chevron-down"></i>';
+    } else {
+      // Expand filters
+      filterContent.classList.add('expanded');
+      filterToggle.classList.add('expanded');
+      filterToggle.innerHTML = '<i class="fas fa-filter"></i><span>Hide Filters</span><i class="fas fa-chevron-up"></i>';
+    }
+  }
+
+  // Auto-collapse filters on mobile after interaction
+  function autoCollapseMobileFilters() {
+    // Only auto-collapse on smaller screens
+    if (window.innerWidth <= 576 && filterContent && filterToggle) {
+      setTimeout(() => {
+        if (filterContent.classList.contains('expanded')) {
+          toggleFilters();
+        }
+      }, 2000); // Auto-collapse after 2 seconds
+    }
+  }
+
+
+  // Desktop event listeners
   if (searchFilter) {
     searchFilter.addEventListener('input', filterListings);
   }
@@ -197,9 +282,74 @@ document.addEventListener('DOMContentLoaded', function() {
     resetBtn.addEventListener('click', resetFilters);
   }
 
-  // Initialize price display
+  // Mobile event listeners
+  if (searchFilterMobile) {
+    searchFilterMobile.addEventListener('input', function() {
+      filterListings();
+      autoCollapseMobileFilters();
+    });
+  }
+
+  if (locationFilterMobile) {
+    locationFilterMobile.addEventListener('change', function() {
+      filterListings();
+      autoCollapseMobileFilters();
+    });
+  }
+
+  if (countryFilterMobile) {
+    countryFilterMobile.addEventListener('change', function() {
+      filterListings();
+      autoCollapseMobileFilters();
+    });
+  }
+
+  if (priceFilterMobile) {
+    priceFilterMobile.addEventListener('input', function() {
+      updatePriceDisplayMobile();
+      filterListings();
+    });
+  }
+
+  if (resetBtnMobile) {
+    resetBtnMobile.addEventListener('click', function() {
+      resetFilters();
+      autoCollapseMobileFilters();
+    });
+  }
+
+  // Mobile filter toggle event listener
+  if (filterToggle) {
+    filterToggle.addEventListener('click', toggleFilters);
+  }
+
+  // Auto-collapse filters when clicking outside on mobile
+  document.addEventListener('click', function(event) {
+    if (window.innerWidth <= 576 && 
+        filterContent && 
+        filterToggle && 
+        filterContent.classList.contains('expanded') &&
+        !filterContent.contains(event.target) && 
+        !filterToggle.contains(event.target)) {
+      toggleFilters();
+    }
+  });
+
+  // Handle window resize
+  window.addEventListener('resize', function() {
+    // Reset filter state when switching between desktop and mobile views
+    if (window.innerWidth > 991 && filterContent && filterContent.classList.contains('expanded')) {
+      toggleFilters();
+    }
+  });
+
+  // Initialize price displays
   if (priceFilter && priceValue) {
     updatePriceDisplay();
+  }
+  
+  if (priceFilterMobile && priceValueMobile) {
+    updatePriceDisplayMobile();
   }
 
   // Initial filter check (in case of pre-filled values)

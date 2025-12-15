@@ -1378,11 +1378,12 @@ body{
     color: #ffd700;
 }
 
+
 /* Filter Section */
 .filter-section {
     background: white;
     border-bottom: 1px solid #e9ecef;
-    padding: 2rem 0;
+    padding: 1.5rem 0;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     position: sticky;
     top: 5rem;
@@ -1394,6 +1395,64 @@ body{
     grid-template-columns: 2fr 1fr 1fr 1fr auto;
     gap: 1.5rem;
     align-items: end;
+}
+
+/* Mobile Filter Toggle */
+.filter-toggle {
+    display: none;
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.filter-toggle:hover {
+    background: #5a6fd8;
+    transform: translateY(-2px);
+}
+
+.filter-toggle i {
+    transition: transform 0.3s ease;
+}
+
+.filter-toggle.expanded i {
+    transform: rotate(180deg);
+}
+
+.filter-content {
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+/* Compact Mobile Filter Layout */
+.mobile-filters-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.mobile-filters-grid .filter-group:nth-child(5) {
+    grid-column: span 2;
+}
+
+.mobile-filters-grid .filter-actions {
+    grid-column: span 2;
+    display: flex;
+    justify-content: center;
+}
+
+.mobile-filters-grid .filter-actions .reset-btn {
+    width: 100%;
+    max-width: 200px;
 }
 
 .filter-group {
@@ -1526,6 +1585,7 @@ body{
     margin: 0;
 }
 
+
 /* Responsive Header and Filter */
 @media (max-width: 991px) {
     .header-content {
@@ -1547,18 +1607,29 @@ body{
         text-align: center;
     }
     
+    /* Mobile Filter Toggle - Show on tablets */
+    .filter-toggle {
+        display: flex;
+    }
+    
+    .filter-content {
+        max-height: 0;
+        opacity: 0;
+    }
+    
+    .filter-content.expanded {
+        max-height: 500px;
+        opacity: 1;
+    }
+    
+    /* Hide the regular grid on mobile */
     .filter-bar {
-        grid-template-columns: 1fr;
-        gap: 1rem;
+        display: none;
     }
     
-    .filter-actions {
-        justify-content: center;
-    }
-    
-    .reset-btn {
-        width: 100%;
-        max-width: 200px;
+    /* Show mobile compact grid when expanded */
+    .filter-content.expanded .filter-bar {
+        display: grid;
     }
 }
 
@@ -1580,12 +1651,32 @@ body{
     }
     
     .filter-section {
-        padding: 1.5rem 0;
+        padding: 1rem 0;
         top: 4rem;
     }
     
     .listing-count {
         padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    /* Compact mobile filters */
+    .mobile-filters-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+    
+    .mobile-filters-grid .filter-group:nth-child(5),
+    .mobile-filters-grid .filter-actions {
+        grid-column: span 1;
+    }
+    
+    .mobile-filters-grid .filter-actions .reset-btn {
+        max-width: 100%;
+    }
+    
+    .filter-toggle {
+        padding: 0.625rem 1.25rem;
         font-size: 0.9rem;
     }
 }
