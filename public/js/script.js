@@ -82,278 +82,264 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+
+
+
 // Book Now functionality
 function handleBookNow(listingId) {
   // Show alert that booking functionality is coming soon
   alert('🎉 Booking functionality is coming soon!\n\nYou will be able to:\n• Select dates\n• Choose guests\n• Make payments\n• Receive confirmations\n\nStay tuned for this feature!');
 }
 
-
-// Listings Page Filter Functionality
+// Enhanced Filter Functionality
 document.addEventListener('DOMContentLoaded', function() {
-  // Get desktop filter elements
-  const searchFilter = document.getElementById('searchFilter');
-  const locationFilter = document.getElementById('locationFilter');
-  const countryFilter = document.getElementById('countryFilter');
-  const priceFilter = document.getElementById('priceFilter');
-  const priceValue = document.getElementById('priceValue');
-  const resetBtn = document.getElementById('resetFilters');
-  
-  // Get mobile filter elements
-  const searchFilterMobile = document.getElementById('searchFilterMobile');
-  const locationFilterMobile = document.getElementById('locationFilterMobile');
-  const countryFilterMobile = document.getElementById('countryFilterMobile');
-  const priceFilterMobile = document.getElementById('priceFilterMobile');
-  const priceValueMobile = document.getElementById('priceValueMobile');
-  const resetBtnMobile = document.getElementById('resetFiltersMobile');
-  
-  // Mobile filter toggle elements
-  const filterToggle = document.getElementById('filterToggle');
-  const filterContent = document.getElementById('filterContent');
-  
-  // Common elements
-  const listingsGrid = document.getElementById('listingsGrid');
-  const noResults = document.getElementById('noResults');
-  const currentCount = document.getElementById('current-count');
-  
-  // Get all listing items
-  const listingItems = document.querySelectorAll('.listing-item');
-  const totalListings = listingItems.length;
+    // Get all filter elements
+    const filters = {
+        desktopSearch: document.getElementById('desktopSearch'),
+        mobileSearch: document.getElementById('mobileSearch'),
+        locationFilter: document.getElementById('locationFilter'),
+        countryFilter: document.getElementById('countryFilter'),
+        priceRange: document.getElementById('priceRange'),
+        priceValue: document.getElementById('priceValue'),
+        mobileLocation: document.getElementById('mobileLocation'),
+        mobileCountry: document.getElementById('mobileCountry'),
+        mobilePrice: document.getElementById('mobilePrice'),
+        mobilePriceValue: document.getElementById('mobilePriceValue'),
+        mobileBedrooms: document.getElementById('mobileBedrooms'),
+        mobileGuests: document.getElementById('mobileGuests'),
+        resetFilters: document.getElementById('resetFilters'),
+        mobileResetFilters: document.getElementById('mobileResetFilters'),
+        filterToggle: document.getElementById('filterToggle'),
+        mobileFilters: document.getElementById('mobileFilters')
+    };
 
-
-  // Get current filter values (from either desktop or mobile, whichever is active)
-  function getCurrentFilters() {
-    const searchTerm = (searchFilter?.value || searchFilterMobile?.value || '').toLowerCase().trim();
-    const selectedLocation = locationFilter?.value || locationFilterMobile?.value || '';
-    const selectedCountry = countryFilter?.value || countryFilterMobile?.value || '';
-    const maxPrice = parseInt(priceFilter?.value || priceFilterMobile?.value || '0');
-    
-    return { searchTerm, selectedLocation, selectedCountry, maxPrice };
-  }
-
-  // Set filter values in both desktop and mobile
-  function setFilterValues(search = '', location = '', country = '', price = null) {
-    if (searchFilter) searchFilter.value = search;
-    if (searchFilterMobile) searchFilterMobile.value = search;
-    
-    if (locationFilter) locationFilter.value = location;
-    if (locationFilterMobile) locationFilterMobile.value = location;
-    
-    if (countryFilter) countryFilter.value = country;
-    if (countryFilterMobile) countryFilterMobile.value = country;
-    
-    if (price !== null) {
-      if (priceFilter) {
-        priceFilter.value = price;
-        updatePriceDisplay();
-      }
-      if (priceFilterMobile) {
-        priceFilterMobile.value = price;
-        updatePriceDisplayMobile();
-      }
-    }
-  }
-
-  // Filter function
-  function filterListings() {
-    const { searchTerm, selectedLocation, selectedCountry, maxPrice } = getCurrentFilters();
-
-    let visibleCount = 0;
-
-    listingItems.forEach(item => {
-      const title = item.dataset.title;
-      const description = item.dataset.description;
-      const location = item.dataset.location;
-      const country = item.dataset.country;
-      const price = parseInt(item.dataset.price);
-
-      // Check search filter
-      const matchesSearch = !searchTerm || 
-        title.includes(searchTerm) || 
-        description.includes(searchTerm);
-
-      // Check location filter
-      const matchesLocation = !selectedLocation || location === selectedLocation;
-
-      // Check country filter
-      const matchesCountry = !selectedCountry || country === selectedCountry;
-
-      // Check price filter
-      const matchesPrice = price <= maxPrice;
-
-      // Show/hide item based on all filters
-      if (matchesSearch && matchesLocation && matchesCountry && matchesPrice) {
-        item.style.display = '';
-        visibleCount++;
-      } else {
-        item.style.display = 'none';
-      }
-    });
-
-    // Update count display
-    currentCount.textContent = visibleCount;
-
-    // Show/hide no results message
-    if (visibleCount === 0) {
-      listingsGrid.style.display = 'none';
-      noResults.style.display = 'block';
-    } else {
-      listingsGrid.style.display = '';
-      noResults.style.display = 'none';
-    }
-  }
-
-
-  // Update price display for desktop
-  function updatePriceDisplay() {
-    if (priceFilter && priceValue) {
-      const value = parseInt(priceFilter.value);
-      priceValue.textContent = `₹${value.toLocaleString()}`;
-    }
-  }
-
-  // Update price display for mobile
-  function updatePriceDisplayMobile() {
-    if (priceFilterMobile && priceValueMobile) {
-      const value = parseInt(priceFilterMobile.value);
-      priceValueMobile.textContent = `₹${value.toLocaleString()}`;
-    }
-  }
-
-  // Reset all filters (both desktop and mobile)
-  function resetFilters() {
-    setFilterValues('', '', '', priceFilter?.max || priceFilterMobile?.max || 0);
-    filterListings();
-  }
-
-  // Mobile filter toggle functionality
-  function toggleFilters() {
-    if (!filterToggle || !filterContent) return;
-    
-    const isExpanded = filterContent.classList.contains('expanded');
-    
-    if (isExpanded) {
-      // Collapse filters
-      filterContent.classList.remove('expanded');
-      filterToggle.classList.remove('expanded');
-      filterToggle.innerHTML = '<i class="fas fa-filter"></i><span>Filter Properties</span><i class="fas fa-chevron-down"></i>';
-    } else {
-      // Expand filters
-      filterContent.classList.add('expanded');
-      filterToggle.classList.add('expanded');
-      filterToggle.innerHTML = '<i class="fas fa-filter"></i><span>Hide Filters</span><i class="fas fa-chevron-up"></i>';
-    }
-  }
-
-  // Auto-collapse filters on mobile after interaction
-  function autoCollapseMobileFilters() {
-    // Only auto-collapse on smaller screens
-    if (window.innerWidth <= 576 && filterContent && filterToggle) {
-      setTimeout(() => {
-        if (filterContent.classList.contains('expanded')) {
-          toggleFilters();
+    // Sync desktop and mobile filters
+    function syncFilters(source, target) {
+        if (source && target) {
+            target.value = source.value;
         }
-      }, 2000); // Auto-collapse after 2 seconds
     }
-  }
 
-
-  // Desktop event listeners
-  if (searchFilter) {
-    searchFilter.addEventListener('input', filterListings);
-  }
-
-  if (locationFilter) {
-    locationFilter.addEventListener('change', filterListings);
-  }
-
-  if (countryFilter) {
-    countryFilter.addEventListener('change', filterListings);
-  }
-
-  if (priceFilter) {
-    priceFilter.addEventListener('input', function() {
-      updatePriceDisplay();
-      filterListings();
-    });
-  }
-
-  if (resetBtn) {
-    resetBtn.addEventListener('click', resetFilters);
-  }
-
-  // Mobile event listeners
-  if (searchFilterMobile) {
-    searchFilterMobile.addEventListener('input', function() {
-      filterListings();
-      autoCollapseMobileFilters();
-    });
-  }
-
-  if (locationFilterMobile) {
-    locationFilterMobile.addEventListener('change', function() {
-      filterListings();
-      autoCollapseMobileFilters();
-    });
-  }
-
-  if (countryFilterMobile) {
-    countryFilterMobile.addEventListener('change', function() {
-      filterListings();
-      autoCollapseMobileFilters();
-    });
-  }
-
-  if (priceFilterMobile) {
-    priceFilterMobile.addEventListener('input', function() {
-      updatePriceDisplayMobile();
-      filterListings();
-    });
-  }
-
-  if (resetBtnMobile) {
-    resetBtnMobile.addEventListener('click', function() {
-      resetFilters();
-      autoCollapseMobileFilters();
-    });
-  }
-
-  // Mobile filter toggle event listener
-  if (filterToggle) {
-    filterToggle.addEventListener('click', toggleFilters);
-  }
-
-  // Auto-collapse filters when clicking outside on mobile
-  document.addEventListener('click', function(event) {
-    if (window.innerWidth <= 576 && 
-        filterContent && 
-        filterToggle && 
-        filterContent.classList.contains('expanded') &&
-        !filterContent.contains(event.target) && 
-        !filterToggle.contains(event.target)) {
-      toggleFilters();
+    // Update price displays
+    function updatePriceDisplay(range, display, suffix = '+') {
+        const value = parseInt(range.value);
+        display.textContent = value >= 10000 ? `₹10,000${suffix}` : `₹${value.toLocaleString()}${suffix}`;
     }
-  });
 
-  // Handle window resize
-  window.addEventListener('resize', function() {
-    // Reset filter state when switching between desktop and mobile views
-    if (window.innerWidth > 991 && filterContent && filterContent.classList.contains('expanded')) {
-      toggleFilters();
+    // Apply filters function
+    function applyFilters() {
+        const searchTerm = (filters.desktopSearch?.value || '').toLowerCase();
+        const selectedLocation = filters.locationFilter?.value || '';
+        const selectedCountry = filters.countryFilter?.value || '';
+        const maxPrice = parseInt(filters.priceRange?.value || 10000);
+        const minBedrooms = parseInt(filters.mobileBedrooms?.value || 0);
+        const minGuests = parseInt(filters.mobileGuests?.value || 0);
+
+        const listingItems = document.querySelectorAll('.listing-item');
+        let visibleCount = 0;
+
+        listingItems.forEach(item => {
+            const title = item.querySelector('.card-title')?.textContent.toLowerCase() || '';
+            const locationElement = item.querySelector('.card-text');
+            const location = locationElement?.textContent.toLowerCase() || '';
+            const priceText = item.querySelector('.price')?.textContent || '0';
+            const price = parseInt(priceText.replace(/,/g, '')) || 0;
+
+            // Extract bedroom and guest info from listing data attributes if available
+            const bedrooms = parseInt(item.dataset.bedrooms || '0');
+            const maxGuests = parseInt(item.dataset.maxGuests || '10');
+
+            // Check all filters
+            const matchesSearch = !searchTerm || title.includes(searchTerm);
+            const matchesLocation = !selectedLocation || location.includes(selectedLocation.toLowerCase());
+            const matchesCountry = !selectedCountry || location.includes(selectedCountry.toLowerCase());
+            const matchesPrice = price <= maxPrice;
+            const matchesBedrooms = !minBedrooms || bedrooms >= minBedrooms;
+            const matchesGuests = !minGuests || maxGuests >= minGuests;
+
+            if (matchesSearch && matchesLocation && matchesCountry && matchesPrice && matchesBedrooms && matchesGuests) {
+                item.style.display = 'block';
+                visibleCount++;
+            } else {
+                item.style.display = 'none';
+            }
+        });
+
+        // Update count
+        const countElement = document.getElementById('current-count');
+        if (countElement) {
+            countElement.textContent = visibleCount;
+        }
+
+        // Show/hide no results message
+        const noResults = document.getElementById('noResults');
+        const listingsGrid = document.getElementById('listingsGrid');
+        
+        if (noResults && listingsGrid) {
+            if (visibleCount === 0) {
+                noResults.style.display = 'block';
+                listingsGrid.style.display = 'none';
+            } else {
+                noResults.style.display = 'none';
+                listingsGrid.style.display = 'flex';
+            }
+        }
     }
-  });
 
-  // Initialize price displays
-  if (priceFilter && priceValue) {
-    updatePriceDisplay();
-  }
-  
-  if (priceFilterMobile && priceValueMobile) {
-    updatePriceDisplayMobile();
-  }
+    // Reset all filters
+    function resetAllFilters() {
+        if (filters.desktopSearch) filters.desktopSearch.value = '';
+        if (filters.mobileSearch) filters.mobileSearch.value = '';
+        if (filters.locationFilter) filters.locationFilter.value = '';
+        if (filters.countryFilter) filters.countryFilter.value = '';
+        if (filters.priceRange) filters.priceRange.value = '10000';
+        if (filters.mobileLocation) filters.mobileLocation.value = '';
+        if (filters.mobileCountry) filters.mobileCountry.value = '';
+        if (filters.mobilePrice) filters.mobilePrice.value = '10000';
+        if (filters.mobileBedrooms) filters.mobileBedrooms.value = '';
+        if (filters.mobileGuests) filters.mobileGuests.value = '';
 
-  // Initial filter check (in case of pre-filled values)
-  filterListings();
+        // Update displays
+        if (filters.priceRange && filters.priceValue) {
+            updatePriceDisplay(filters.priceRange, filters.priceValue);
+        }
+        if (filters.mobilePrice && filters.mobilePriceValue) {
+            updatePriceDisplay(filters.mobilePrice, filters.mobilePriceValue);
+        }
+
+        applyFilters();
+    }
+
+    // Toggle mobile filters
+    function toggleMobileFilters() {
+        if (filters.mobileFilters && filters.filterToggle) {
+            const isVisible = filters.mobileFilters.style.display !== 'none';
+            if (isVisible) {
+                filters.mobileFilters.style.display = 'none';
+                filters.filterToggle.innerHTML = '<i class="fas fa-filter"></i> More Filters <i class="fas fa-chevron-down"></i>';
+            } else {
+                filters.mobileFilters.style.display = 'block';
+                filters.filterToggle.innerHTML = '<i class="fas fa-filter"></i> Less Filters <i class="fas fa-chevron-up"></i>';
+            }
+        }
+    }
+
+    // Event Listeners
+    if (filters.desktopSearch) {
+        filters.desktopSearch.addEventListener('input', applyFilters);
+    }
+    
+    if (filters.mobileSearch) {
+        filters.mobileSearch.addEventListener('input', function() {
+            if (filters.desktopSearch) {
+                filters.desktopSearch.value = this.value;
+            }
+            applyFilters();
+        });
+    }
+
+    // Location filters
+    if (filters.locationFilter) {
+        filters.locationFilter.addEventListener('change', function() {
+            if (filters.mobileLocation) {
+                filters.mobileLocation.value = this.value;
+            }
+            applyFilters();
+        });
+    }
+
+    if (filters.mobileLocation) {
+        filters.mobileLocation.addEventListener('change', function() {
+            if (filters.locationFilter) {
+                filters.locationFilter.value = this.value;
+            }
+            applyFilters();
+        });
+    }
+
+    // Country filters
+    if (filters.countryFilter) {
+        filters.countryFilter.addEventListener('change', function() {
+            if (filters.mobileCountry) {
+                filters.mobileCountry.value = this.value;
+            }
+            applyFilters();
+        });
+    }
+
+    if (filters.mobileCountry) {
+        filters.mobileCountry.addEventListener('change', function() {
+            if (filters.countryFilter) {
+                filters.countryFilter.value = this.value;
+            }
+            applyFilters();
+        });
+    }
+
+    // Price range filters
+    if (filters.priceRange) {
+        filters.priceRange.addEventListener('input', function() {
+            if (filters.priceValue) {
+                updatePriceDisplay(this, filters.priceValue);
+            }
+            if (filters.mobilePrice) {
+                filters.mobilePrice.value = this.value;
+                if (filters.mobilePriceValue) {
+                    updatePriceDisplay(filters.mobilePrice, filters.mobilePriceValue);
+                }
+            }
+            applyFilters();
+        });
+    }
+
+    if (filters.mobilePrice) {
+        filters.mobilePrice.addEventListener('input', function() {
+            if (filters.mobilePriceValue) {
+                updatePriceDisplay(this, filters.mobilePriceValue);
+            }
+            if (filters.priceRange) {
+                filters.priceRange.value = this.value;
+                if (filters.priceValue) {
+                    updatePriceDisplay(filters.priceRange, filters.priceValue);
+                }
+            }
+            applyFilters();
+        });
+    }
+
+    // Bedroom and guest filters
+    if (filters.mobileBedrooms) {
+        filters.mobileBedrooms.addEventListener('change', applyFilters);
+    }
+
+    if (filters.mobileGuests) {
+        filters.mobileGuests.addEventListener('change', applyFilters);
+    }
+
+    // Reset buttons
+    if (filters.resetFilters) {
+        filters.resetFilters.addEventListener('click', resetAllFilters);
+    }
+
+    if (filters.mobileResetFilters) {
+        filters.mobileResetFilters.addEventListener('click', resetAllFilters);
+    }
+
+    // Mobile filter toggle
+    if (filters.filterToggle) {
+        filters.filterToggle.addEventListener('click', toggleMobileFilters);
+    }
+
+    // Initialize displays
+    if (filters.priceRange && filters.priceValue) {
+        updatePriceDisplay(filters.priceRange, filters.priceValue);
+    }
+    if (filters.mobilePrice && filters.mobilePriceValue) {
+        updatePriceDisplay(filters.mobilePrice, filters.mobilePriceValue);
+    }
+
+    // Initial filter application
+    applyFilters();
 });
 
 
@@ -632,7 +618,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const nights = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
         
         // Calculate total price
-        const totalPrice = listingPrice * nights;
+        const totalPrice =  (listing.price /30 )* nights;
 
         // Update display
         if (nightsCount) nightsCount.textContent = `${nights} night${nights > 1 ? 's' : ''}`;
