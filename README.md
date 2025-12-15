@@ -103,18 +103,6 @@ Copy code
 
 ---
 
-## ⚙️ Local Setup
-# Clone the repository
-git clone https://github.com/Mayank-Tyagi-726/CozyCribbs.git
-
-# Move into the project directory
-cd CozyCribbs
-
-# Install all dependencies
-npm install
-
-# Start the server
-node app.js
 
 
 📚 Learning Outcomes
@@ -137,3 +125,17 @@ Focused on backend engineering, scalable architectures, and real-world problem s
 
 📌 Note
 CozyCribbs is a portfolio-focused demo application designed to showcase development skills and backend logic. While not deployed to production, the architecture and implementation are structured to support future scalability.
+
+## ⚙️ Local Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/Mayank-Tyagi-726/CozyCribs.git
+
+# Install dependencies
+npm install
+
+# Start the development server
+node app.js
+
+
