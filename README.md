@@ -77,6 +77,7 @@ Copy code
 
 ## 📸 Screenshots
 
+![Landing Page](screenshot/home.png)
 _Add screenshots inside a `screenshots/` folder and reference them below._
 
 - Home Page  
