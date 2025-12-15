@@ -1,27 +1,106 @@
+
 <% layout("/layouts/boilerplate") %>
-<div class="row">
-    <h1 class="col-8 offset-2">SignUp on CozyCribs</h1>
-    <div class="col-8 offset-2">
-        <form action="/signup" method="POST" class="needs-validation" novalidate><br>
 
-<div>
-            <label for="username" class="form-label">username</label>
-        <input type="text" name="username" class="form-control" required id="username">
-</div>
+<body>
+    <div class="auth-container">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 col-md-7 col-sm-9">
+                    <div class="auth-card">
+                        <div class="auth-header">
+                            <i class="fas fa-user-plus auth-title-icon"></i>
+                            <h1 class="auth-title">Join CozyCribs</h1>
+                            <p class="auth-subtitle">Create your account and start your journey</p>
+                        </div>
+                        
+                        <form action="/signup" method="POST" class="auth-form needs-validation" novalidate>
+                            <div class="form-group">
+                                <label for="username" class="form-label">
+                                    <i class="fas fa-user"></i>
+                                    Username
+                                </label>
+                                <input type="text" 
+                                       name="username" 
+                                       class="form-control" 
+                                       required 
+                                       id="username"
+                                       placeholder="Choose a unique username"
+                                       autocomplete="username"
+                                       minlength="3"
+                                       maxlength="20">
+                                <div class="invalid-feedback">
+                                    Username must be 3-20 characters long.
+                                </div>
+                            </div>
 
-<div>
-            <label for="email" class="form-label">email</label>
-        <input type="email" name="email" class="form-control" required id="email">
-</div>
+                            <div class="form-group">
+                                <label for="email" class="form-label">
+                                    <i class="fas fa-envelope"></i>
+                                    Email Address
+                                </label>
+                                <input type="email" 
+                                       name="email" 
+                                       class="form-control" 
+                                       required 
+                                       id="email"
+                                       placeholder="Enter your email address"
+                                       autocomplete="email">
+                                <div class="invalid-feedback">
+                                    Please provide a valid email address.
+                                </div>
+                            </div>
 
-<div>
-            <label for="password" class="form-label">password</label>
-        <input type="password" name="password" class="form-control" required id="password">
-</div>
-<br><br><br>
+                            <div class="form-group">
+                                <label for="password" class="form-label">
+                                    <i class="fas fa-lock"></i>
+                                    Password
+                                </label>
+                                <input type="password" 
+                                       name="password" 
+                                       class="form-control" 
+                                       required 
+                                       id="password"
+                                       placeholder="Create a strong password"
+                                       autocomplete="new-password"
+                                       minlength="6">
+                                <div class="invalid-feedback">
+                                    Password must be at least 6 characters long.
+                                </div>
+                                <div class="password-strength">
+                                    <small class="text-muted">
+                                        <i class="fas fa-info-circle"></i>
+                                        Use at least 6 characters with a mix of letters and numbers
+                                    </small>
+                                </div>
+                            </div>
 
-<button class="btn btn-success">SignUp</button>
+                            <button type="submit" class="auth-btn">
+                                <i class="fas fa-user-plus"></i>
+                                Create Account
+                            </button>
+                        </form>
 
-
+                        <div class="auth-links">
+                            <p class="auth-switch">
+                                Already have an account? 
+                                <a href="/login" class="auth-link">
+                                    <i class="fas fa-sign-in-alt"></i>
+                                    Sign In
+                                </a>
+                            </p>
+                            <div class="auth-terms">
+                                <small class="text-muted">
+                                    <i class="fas fa-shield-alt"></i>
+                                    By creating an account, you agree to our 
+                                    <a href="#" class="terms-link">Terms of Service</a> 
+                                    and 
+                                    <a href="#" class="terms-link">Privacy Policy</a>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+</body>

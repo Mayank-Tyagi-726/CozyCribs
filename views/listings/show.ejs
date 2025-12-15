@@ -10,7 +10,8 @@
                 <div class="listing-card">
                     <div class="card">
                         <div class="image-container">
-                            <img src="<%= listing.image.startsWith('/uploads/') ? listing.image : '/uploads/' + listing.image.split('/').pop() %>" class="card-img-top show-img" alt="listing_image">
+
+                            <img src="<%= listing.image %>" class="card-img-top show-img" alt="listing_image">
                             <div class="image-overlay"></div>
                         </div>
                         <div class="card-body">
@@ -23,7 +24,8 @@
                                 <div class="detail-row">
                                     <i class="fas fa-rupee-sign detail-icon"></i>
                                     <span class="detail-label">Price:</span>
-                                    <span class="detail-value price-highlight">&#8377 <%=listing.price%> per night</span>
+
+                                    <span class="detail-value price-highlight">&#8377 <%=listing.price%> per month</span>
                                 </div>
                                 <div class="detail-row">
                                     <i class="fas fa-map-marker-alt detail-icon"></i>
@@ -36,6 +38,86 @@
                                     <span class="detail-value"><%=listing.country%></span>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- Booking Section -->
+                <div class="booking-section mt-4">
+                    <div class="booking-card">
+                        <div class="booking-header">
+                            <div class="booking-price">
+                                <span class="price-amount">₹<%= listing.price %></span>
+                                <span class="price-period">per month</span>
+                            </div>
+                            <div class="availability-status">
+                                <span class="status-badge available">
+                                    <i class="fas fa-check-circle"></i>
+                                    Available
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="booking-form-container">
+                            <form action="/bookings/<%= listing._id %>" method="POST" class="booking-form" id="bookingForm">
+                                <div class="booking-dates">
+                                    <div class="date-input-group">
+                                        <label for="checkIn" class="form-label">
+                                            <i class="fas fa-calendar-check"></i>
+                                            Check-in
+                                        </label>
+                                        <input type="date" id="checkIn" name="checkIn" class="form-control" required>
+                                    </div>
+                                    <div class="date-input-group">
+                                        <label for="checkOut" class="form-label">
+                                            <i class="fas fa-calendar-times"></i>
+                                            Check-out
+                                        </label>
+                                        <input type="date" id="checkOut" name="checkOut" class="form-control" required>
+                                    </div>
+                                </div>
+
+                                <div class="guests-input">
+                                    <label for="guests" class="form-label">
+                                        <i class="fas fa-users"></i>
+                                        Guests
+                                    </label>
+                                    <select id="guests" name="guests" class="form-select" required>
+                                        <option value="">Select guests</option>
+                                        <option value="1">1 Guest</option>
+                                        <option value="2">2 Guests</option>
+                                        <option value="3">3 Guests</option>
+                                        <option value="4">4 Guests</option>
+                                        <option value="5">5+ Guests</option>
+                                    </select>
+                                </div>
+
+                                <div class="booking-summary" id="bookingSummary" style="display: none;">
+                                    <div class="summary-row">
+                                        <span>Duration:</span>
+                                        <span id="nightsCount">0 nights</span>
+                                    </div>
+                                    <div class="summary-row">
+                                        <span>Total Price:</span>
+                                        <span id="totalPrice">₹0</span>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn booking-btn" id="bookingBtn" disabled>
+                                    <i class="fas fa-calendar-check"></i>
+                                    Book Now
+                                </button>
+                            </form>
+
+
+                            <% if(currUser && currUser._id && listing.owner && currUser._id.equals(listing.owner._id)) { %>
+                                <div class="owner-notice">
+                                    <i class="fas fa-info-circle"></i>
+                                    You are the owner of this property
+                                </div>
+                            <% } %>
                         </div>
                     </div>
                 </div>

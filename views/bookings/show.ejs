@@ -1,0 +1,184 @@
+
+<% layout("/layouts/boilerplate") %>
+
+<div class="booking-details-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="booking-details-header">
+                    <div class="header-content">
+                        <h1 class="booking-title">
+                            <i class="fas fa-ticket-alt"></i>
+                            Booking Details
+                        </h1>
+                        <div class="booking-reference">
+                            <span class="ref-label">Reference:</span>
+                            <span class="ref-value"><%= booking.bookingReference %></span>
+                        </div>
+                    </div>
+                    <div class="header-status">
+                        <span class="status-badge <%= booking.status %>">
+                            <% if(booking.status === 'confirmed') { %>
+                                <i class="fas fa-check-circle"></i> Confirmed
+                            <% } else if(booking.status === 'pending') { %>
+                                <i class="fas fa-clock"></i> Pending
+                            <% } else if(booking.status === 'cancelled') { %>
+                                <i class="fas fa-times-circle"></i> Cancelled
+                            <% } else { %>
+                                <i class="fas fa-check"></i> Completed
+                            <% } %>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="booking-details-card">
+                    <!-- Property Information -->
+                    <div class="property-section">
+                        <div class="property-header">
+                            <div class="property-image">
+                                <img src="<%= booking.listing.image %>" alt="<%= booking.listing.title %>">
+                            </div>
+                            <div class="property-info">
+                                <h2 class="property-title"><%= booking.listing.title %></h2>
+                                <p class="property-location">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <%= booking.listing.location %>, <%= booking.listing.country %>
+                                </p>
+                                <div class="property-price">
+                                    <span class="price-amount">₹<%= booking.listing.price %></span>
+                                    <span class="price-period">per month</span>
+                                </div>
+                                <a href="/listings/<%= booking.listing._id %>" class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-eye"></i>
+                                    View Property
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stay Information -->
+                    <div class="stay-section">
+                        <h3 class="section-title">
+                            <i class="fas fa-calendar-alt"></i>
+                            Stay Details
+                        </h3>
+                        <div class="stay-grid">
+                            <div class="stay-item">
+                                <div class="item-icon">
+                                    <i class="fas fa-calendar-check"></i>
+                                </div>
+                                <div class="item-content">
+                                    <span class="item-label">Check-in</span>
+                                    <span class="item-value"><%= new Date(booking.checkIn).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %></span>
+                                </div>
+                            </div>
+                            
+                            <div class="stay-item">
+                                <div class="item-icon">
+                                    <i class="fas fa-calendar-times"></i>
+                                </div>
+                                <div class="item-content">
+                                    <span class="item-label">Check-out</span>
+                                    <span class="item-value"><%= new Date(booking.checkOut).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %></span>
+                                </div>
+                            </div>
+                            
+                            <div class="stay-item">
+                                <div class="item-icon">
+                                    <i class="fas fa-moon"></i>
+                                </div>
+                                <div class="item-content">
+                                    <span class="item-label">Duration</span>
+                                    <span class="item-value"><%= Math.ceil((new Date(booking.checkOut) - new Date(booking.checkIn)) / (1000 * 60 * 60 * 24)) %> nights</span>
+                                </div>
+                            </div>
+                            
+                            <div class="stay-item">
+                                <div class="item-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="item-content">
+                                    <span class="item-label">Guests</span>
+                                    <span class="item-value"><%= booking.guests %> guest<%= booking.guests > 1 ? 's' : '' %></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Information -->
+                    <div class="payment-section">
+                        <h3 class="section-title">
+                            <i class="fas fa-credit-card"></i>
+                            Payment Details
+                        </h3>
+                        <div class="payment-breakdown">
+                            <div class="payment-row">
+                                <span class="payment-label">Total Amount:</span>
+                                <span class="payment-value total">₹<%= booking.totalPrice.toLocaleString() %></span>
+                            </div>
+                            <div class="payment-row">
+                                <span class="payment-label">Payment Status:</span>
+                                <span class="payment-value">
+                                    <span class="status-badge <%= booking.paymentStatus %>">
+                                        <% if(booking.paymentStatus === 'paid') { %>
+                                            <i class="fas fa-check-circle"></i> Paid
+                                        <% } else if(booking.paymentStatus === 'pending') { %>
+                                            <i class="fas fa-clock"></i> Pending
+                                        <% } else { %>
+                                            <i class="fas fa-undo"></i> Refunded
+                                        <% } %>
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="payment-row">
+                                <span class="payment-label">Booking Date:</span>
+                                <span class="payment-value"><%= new Date(booking.createdAt).toLocaleDateString() %></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Special Requests -->
+                    <% if(booking.specialRequests) { %>
+                        <div class="requests-section">
+                            <h3 class="section-title">
+                                <i class="fas fa-sticky-note"></i>
+                                Special Requests
+                            </h3>
+                            <div class="requests-content">
+                                <p><%= booking.specialRequests %></p>
+                            </div>
+                        </div>
+                    <% } %>
+
+                    <!-- Booking Actions -->
+                    <div class="booking-actions-section">
+                        <div class="action-buttons">
+                            <a href="/bookings" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i>
+                                Back to My Bookings
+                            </a>
+                            
+                            <% if(booking.status === 'confirmed' && new Date(booking.checkIn) > new Date()) { %>
+                                <form action="/bookings/<%= booking._id %>/cancel" method="POST" style="display: inline;">
+                                    <button type="submit" class="btn btn-danger" 
+                                            onclick="return confirm('Are you sure you want to cancel this booking? Cancellation policies may apply.')">
+                                        <i class="fas fa-times"></i>
+                                        Cancel Booking
+                                    </button>
+                                </form>
+                            <% } %>
+                            
+                            <% if(booking.status === 'confirmed' && new Date(booking.checkIn) <= new Date() && new Date(booking.checkOut) >= new Date()) { %>
+                                <span class="current-stay-badge">
+                                    <i class="fas fa-home"></i>
+                                    Currently staying here
+                                </span>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

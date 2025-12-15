@@ -1,292 +1,241 @@
 const sampleListings = [
   {
-    title: "Cozy Beachfront Cottage",
+    title: "Cozy PG Room in Andheri West",
     description:
-      "Escape to this charming beachfront cottage for a relaxing getaway. Enjoy stunning ocean views and easy access to the beach.",
-    image: "https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHRyYXZlbHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
-    
-    price: 1500,
-    location: "Malibu",
-    country: "United States",
+      "Well-furnished PG room in the heart of Andheri West. Perfect for working professionals and students. Includes AC, Wi-Fi, and 24/7 security.",
+    image: "https://img.staticmb.com/mbphoto/pg/grd2/cropped_images/2024/Aug/22/Photo_h400_w540/GR2-459029-2228821_400_540.jpeg",
+    price: 12000,
+    location: "Andheri West",
+    country: "India",
   },
   {
-    title: "Modern Loft in Downtown",
+    title: "Budget-Friendly PG near IIT Delhi",
     description:
-      "Stay in the heart of the city in this stylish loft apartment. Perfect for urban explorers!",
-    image:  "https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHRyYXZlbHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
-    
-    price: 1200,
-    location: "New York City",
-    country: "United States",
+      "Clean and comfortable PG accommodation just 5 minutes walk from IIT Delhi. Ideal for students with study environment and mess facility.",
+    image: "https://images.unsplash.com/photo-1563298723-dcfebaa392e3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cm9vbSUyMGludGVyaW9yfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
+    price: 8000,
+    location: "Hauz Khas",
+    country: "India",
   },
   {
-    title: "Mountain Retreat",
+    title: "Modern PG in Koramangala",
     description:
-      "Unplug and unwind in this peaceful mountain cabin. Surrounded by nature, it's a perfect place to recharge.",
-    image:  "https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8aG90ZWxzfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-    
-    price: 1000,
-    location: "Aspen",
-    country: "United States",
+      "Luxury PG room in prime Koramangala location. Fully furnished with attached bathroom, AC, and premium amenities. Walking distance to restaurants and cafes.",
+    image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cm9vbSUyMGludGVyaW9yfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
+    price: 15000,
+    location: "Koramangala",
+    country: "India",
   },
   {
-    title: "Historic Villa in Tuscany",
+    title: "Girls PG in Bandra West",
     description:
-      "Experience the charm of Tuscany in this beautifully restored villa. Explore the rolling hills and vineyards.",
-    image:  "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aG90ZWxzfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-    
-    price: 2500,
-    location: "Florence",
-    country: "Italy",
+      "Safe and secure PG accommodation for working women in Bandra West. 24/7 female security, CCTV surveillance, and power backup.",
+    image: "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cm9vbSUyMGludGVyaW9yfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
+    price: 14000,
+    location: "Bandra West",
+    country: "India",
   },
   {
-    title: "Secluded Treehouse Getaway",
+    title: "Student PG near VIT Vellore",
     description:
-      "Live among the treetops in this unique treehouse retreat. A true nature lover's paradise.",
-    image:  "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGhvdGVsc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
-    
-    price: 800,
-    location: "Portland",
-    country: "United States",
+      "Affordable PG for VIT students with mess facility, laundry service, and 24/7 Wi-Fi. Study tables and quiet environment provided.",
+    image: "https://content.jdmagicbox.com/v2/comp/sonepat/n9/9999px130.x130.230604161820.u1n9/catalogue/radhe-radhe-pg-rooms-kundli-sonepat-sonepat-paying-guest-accommodations-u72wpgwv0o-250.jpg?w=640&q=75",
+    price: 7000,
+    location: "Katpadi",
+    country: "India",
   },
   {
-    title: "Beachfront Paradise",
+    title: "Professional PG in CP",
     description:
-      "Step out of your door onto the sandy beach. This beachfront condo offers the ultimate relaxation.",
-    image: "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdGVsc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
-    
-    price: 2000,
-    location: "Cancun",
-    country: "Mexico",
+      "Premium PG accommodation in Connaught Place for working professionals. Metro connectivity, high-speed internet, and housekeeping services.",
+    image:"https://img.staticmb.com/mbphoto/pg/grd2/cropped_images/2025/Oct/29/Photo_h400_w540/GR2-513867-2616061_400_540.jpeg",
+      price: 18000,
+    location: "Connaught Place",
+    country: "India",
   },
   {
-    title: "Rustic Cabin by the Lake",
+    title: "Cozy PG Room in Pune Camp",
     description:
-      "Spend your days fishing and kayaking on the serene lake. This cozy cabin is perfect for outdoor enthusiasts.",
-    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG1vdW50YWlufGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-    
-    price: 900,
-    location: "Lake Tahoe",
-    country: "United States",
-  },
-  {
-    title: "Luxury Penthouse with City Views",
-    description:
-      "Indulge in luxury living with panoramic city views from this stunning penthouse apartment.",
-    image:  "https://images.unsplash.com/photo-1622396481328-9b1b78cdd9fd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c2t5JTIwdmFjYXRpb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
-    
-    price: 3500,
-    location: "Los Angeles",
-    country: "United States",
-  },
-  {
-    title: "Ski-In/Ski-Out Chalet",
-    description:
-      "Hit the slopes right from your doorstep in this ski-in/ski-out chalet in the Swiss Alps.",
-    image:  "https://images.unsplash.com/photo-1502784444187-359ac186c5bb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHNreSUyMHZhY2F0aW9ufGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-    
-    price: 3000,
-    location: "Verbier",
-    country: "Switzerland",
-  },
-  {
-    title: "Safari Lodge in the Serengeti",
-    description:
-      "Experience the thrill of the wild in a comfortable safari lodge. Witness the Great Migration up close.",
-    image:  "https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjl8fG1vdW50YWlufGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-    
-    price: 4000,
-    location: "Serengeti National Park",
-    country: "Tanzania",
-  },
-  {
-    title: "Historic Canal House",
-    description:
-      "Stay in a piece of history in this beautifully preserved canal house in Amsterdam's iconic district.",
-    image:"https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2FtcGluZ3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
-    
-    price: 1800,
-    location: "Amsterdam",
-    country: "Netherlands",
-  },
-  {
-    title: "Private Island Retreat",
-    description:
-      "Have an entire island to yourself for a truly exclusive and unforgettable vacation experience.",
-    image:  "https://images.unsplash.com/photo-1618140052121-39fc6db33972?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bG9kZ2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
-    
+      "Well-maintained PG in Pune Camp area. Perfect for IT professionals working in Hinjewadi. Includes breakfast and dinner in mess.",
+    image: "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cm9vbSUyMGludGVyaW9yfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
     price: 10000,
-    location: "Fiji",
-    country: "Fiji",
+    location: "Camp",
+    country: "India",
   },
   {
-    title: "Charming Cottage in the Cotswolds",
+    title: "Luxury PG in Banjara Hills",
     description:
-      "Escape to the picturesque Cotswolds in this quaint and charming cottage with a thatched roof.",
-    image:  "https://images.unsplash.com/photo-1602088113235-229c19758e9f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8YmVhY2glMjB2YWNhdGlvbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
-    
-    price: 1200,
-    location: "Cotswolds",
-    country: "United Kingdom",
+      "Upscale PG accommodation in Banjara Hills with AC, private bathroom, and balcony. Ideal for corporate professionals with premium lifestyle.",
+    image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cm9vbSUyMGludGVyaW9yfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
+    price: 16000,
+    location: "Banjara Hills",
+    country: "India",
   },
   {
-    title: "Historic Brownstone in Boston",
+    title: "Budget PG in Sector 15",
     description:
-      "Step back in time in this elegant historic brownstone located in the heart of Boston.",
-    image:  "https://images.unsplash.com/photo-1533619239233-6280475a633a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHNreSUyMHZhY2F0aW9ufGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-    
-    price: 2200,
-    location: "Boston",
-    country: "United States",
+      "Economical PG option in Sector 15, Noida. Close to Metro station, IT companies, and shopping malls. Basic amenities included.",
+    image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHJvb20lMjBpbnRlcmlvcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+    price: 6500,
+    location: "Sector 15",
+    country: "India",
   },
   {
-    title: "Beachfront Bungalow in Bali",
+    title: "Girls PG in Indiranagar",
     description:
-      "Relax on the sandy shores of Bali in this beautiful beachfront bungalow with a private pool.",
-    image:  "https://images.unsplash.com/photo-1602391833977-358a52198938?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzJ8fGNhbXBpbmd8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
-    
-    price: 1800,
-    location: "Bali",
-    country: "Indonesia",
+      "Safe and secure accommodation for female professionals in Indiranagar. CCTV monitoring, biometric access, and female staff only.",
+    image: "https://img.staticmb.com/mbphoto/pg/grd2/cropped_images/2021/Sep/23/Photo_h400_w540/GR2-236707-1116123_400_540.jpg",
+    price: 13000,
+    location: "Indiranagar",
+    country: "India",
   },
   {
-    title: "Mountain View Cabin in Banff",
+    title: "Student PG near Manipal University",
     description:
-      "Enjoy breathtaking mountain views from this cozy cabin in the Canadian Rockies.",
-    image: "https://images.unsplash.com/photo-1521401830884-6c03c1c87ebb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGxvZGdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-    
-    price: 1500,
-    location: "Banff",
-    country: "Canada",
+      "Student-friendly PG near Manipal University with mess facility, laundry service, and 24/7 Wi-Fi. Perfect for medical students.",
+    image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHJvb20lMjBpbnRlcmlvcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+    price: 7500,
+    location: "Manipal",
+    country: "India",
   },
   {
-    title: "Art Deco Apartment in Miami",
+    title: "Executive PG in Powai",
     description:
-      "Step into the glamour of the 1920s in this stylish Art Deco apartment in South Beach.",
-    image: "https://plus.unsplash.com/premium_photo-1670963964797-942df1804579?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGxvZGdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-    
-    price: 1600,
-    location: "Miami",
-    country: "United States",
+      "Premium PG accommodation in Powai for corporate professionals. Near IIT Bombay and major IT companies. Includes gym and recreational facilities.",
+    image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHJvb20lMjBpbnRlcmlvcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+    price: 17000,
+    location: "Powai",
+    country: "India",
   },
   {
-    title: "Tropical Villa in Phuket",
+    title: "Shared PG Room in MG Road",
     description:
-      "Escape to a tropical paradise in this luxurious villa with a private infinity pool in Phuket.",
-    image: "https://images.unsplash.com/photo-1470165301023-58dab8118cc9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGxvZGdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-    
-    price: 3000,
-    location: "Phuket",
-    country: "Thailand",
+      "Economical shared accommodation in MG Road, Gurgaon. Walking distance to Metro and major corporate offices. Shared kitchen and common area.",
+    image: "https://img.staticmb.com/mbphoto/pg/grd2/cropped_images/2024/Apr/06/Photo_h400_w540/GR2-356613-2095865_400_540.jpeg",
+    price: 5500,
+    location: "MG Road",
+    country: "India",
   },
   {
-    title: "Historic Castle in Scotland",
+    title: "Professional PG in Gachibowli",
     description:
-      "Live like royalty in this historic castle in the Scottish Highlands. Explore the rugged beauty of the area.",
-    image:  "https://images.unsplash.com/photo-1585543805890-6051f7829f98?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGJlYWNoJTIwdmFjYXRpb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
-    
-    price: 4000,
-    location: "Scottish Highlands",
-    country: "United Kingdom",
+      "Modern PG in Gachibowli for IT professionals. High-speed internet, backup power, and close to major tech companies and metro.",
+    image: "https://i.pinimg.com/originals/22/e0/17/22e01709e94867cffcdf8baf83acd52a.jpg",
+    price: 13500,
+    location: "Gachibowli",
+    country: "India",
   },
   {
-    title: "Desert Oasis in Dubai",
+    title: "Cozy PG in Kharadi",
     description:
-      "Experience luxury in the middle of the desert in this opulent oasis in Dubai with a private pool.",
-    image:  "https://images.unsplash.com/photo-1518684079-3c830dcef090?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZHViYWl8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
-    
-    price: 5000,
-    location: "Dubai",
-    country: "United Arab Emirates",
+      "Comfortable PG accommodation in Kharadi, Pune. Perfect for IT professionals working in EON IT Park. Includes breakfast and Wi-Fi.",
+    image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjN8fHJvb218ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
+    price: 11000,
+    location: "Kharadi",
+    country: "India",
   },
   {
-    title: "Rustic Log Cabin in Montana",
+    title: "Girls PG in Alwarpet",
     description:
-      "Unplug and unwind in this cozy log cabin surrounded by the natural beauty of Montana.",
-    image:  "https://images.unsplash.com/photo-1586375300773-8384e3e4916f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGxvZGdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-    
-    price: 1100,
-    location: "Montana",
-    country: "United States",
+      "Safe and secure girls PG in Alwarpet, Chennai. 24/7 security, CCTV, and female caretaker. Close to educational institutions and IT companies.",
+    image: "https://img.staticmb.com/mbphoto/pg/grd2/cropped_images/2025/Oct/19/Photo_h400_w540/GR2-512855-2610201_400_540.jpg",
+    price: 9500,
+    location: "Alwarpet",
+    country: "India",
   },
   {
-    title: "Beachfront Villa in Greece",
+    title: "Student PG in Rajeev Chowk",
     description:
-      "Enjoy the crystal-clear waters of the Mediterranean in this beautiful beachfront villa on a Greek island.",
-    image:  "https://images.unsplash.com/photo-1602343168117-bb8ffe3e2e9f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8dmlsbGF8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
-    price: 2500,
-    location: "Mykonos",
-    country: "Greece",
-  },
-  {
-    title: "Eco-Friendly Treehouse Retreat",
-    description:
-      "Stay in an eco-friendly treehouse nestled in the forest. It's the perfect escape for nature lovers.",
-    image: "https://images.unsplash.com/photo-1488462237308-ecaa28b729d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8c2t5JTIwdmFjYXRpb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
-  
-    price: 750,
-    location: "Costa Rica",
-    country: "Costa Rica",
-  },
-  {
-    title: "Historic Cottage in Charleston",
-    description:
-      "Experience the charm of historic Charleston in this beautifully restored cottage with a private garden.",
-    image:  "https://images.unsplash.com/photo-1587381420270-3e1a5b9e6904?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGxvZGdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-  
-    price: 1600,
-    location: "Charleston",
-    country: "United States",
-  },
-  {
-    title: "Modern Apartment in Tokyo",
-    description:
-      "Explore the vibrant city of Tokyo from this modern and centrally located apartment.",
-    image: "https://images.unsplash.com/photo-1480796927426-f609979314bd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHRva3lvfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-    price: 2000,
-    location: "Tokyo",
-    country: "Japan",
-  },
-  {
-    title: "Lakefront Cabin in New Hampshire",
-    description:
-      "Spend your days by the lake in this cozy cabin in the scenic White Mountains of New Hampshire.",
-    image:"https://images.unsplash.com/photo-1578645510447-e20b4311e3ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDF8fGNhbXBpbmd8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
-  
-    price: 1200,
-    location: "New Hampshire",
-    country: "United States",
-  },
-  {
-    title: "Luxury Villa in the Maldives",
-    description:
-      "Indulge in luxury in this overwater villa in the Maldives with stunning views of the Indian Ocean.",
-    image:  "https://images.unsplash.com/photo-1439066615861-d1af74d74000?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bGFrZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+      "Budget-friendly student accommodation in Rajeev Chowk, Delhi. Walking distance to DU North Campus and metro connectivity.",
+    image: "https://i.pinimg.com/originals/7a/15/5c/7a155c73ac916989ba9297bdc7d5b786.jpg",
     price: 6000,
-    location: "Maldives",
-    country: "Maldives",
+    location: "Rajeev Chowk",
+    country: "India",
   },
   {
-    title: "Ski Chalet in Aspen",
+    title: "Executive PG in Sarjapur",
     description:
-      "Hit the slopes in style with this luxurious ski chalet in the world-famous Aspen ski resort.",
-    image:"https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGxha2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
-  
-    price: 4000,
-    location: "Aspen",
-    country: "United States",
+      "Luxury PG in Sarjapur Road for working professionals. AC room, private bathroom, and premium amenities. Near major IT companies.",
+    image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjl8fHJvb218ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
+    price: 14500,
+    location: "Sarjapur Road",
+    country: "India",
   },
   {
-    title: "Secluded Beach House in Costa Rica",
+    title: "Budget PG in Vile Parle",
     description:
-      "Escape to a secluded beach house on the Pacific coast of Costa Rica. Surf, relax, and unwind.",
-    image: 
-       "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhY2glMjBob3VzZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
-    
-    price: 1800,
-    location: "Costa Rica",
-    country: "Costa Rica",
+      "Affordable PG option in Vile Parle East. Basic amenities, shared bathroom, and mess facility. Perfect for students and entry-level professionals.",
+    image: "https://img.staticmb.com/mbphoto/pg/grd2/cropped_images/2025/Nov/24/Photo_h400_w540/GR2-517265-2640091_400_540.jpeg",
+    price: 7000,
+    location: "Vile Parle East",
+    country: "India",
   },
+  {
+    title: "Professional PG in Lavelle Road",
+    description:
+      "Premium PG accommodation in Lavelle Road for corporate professionals. Central location, premium amenities, and housekeeping services.",
+    image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzN8fHJvb218ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
+    price: 19000,
+    location: "Lavelle Road",
+    country: "India",
+  },
+  {
+    title: "Shared PG Room in Rajajinagar",
+    description:
+      "Economical shared accommodation in Rajajinagar, Bangalore. Close to metro and major IT companies. Includes basic furniture and mess facility.",
+    image: "https://images.unsplash.com/photo-1563298723-dcfebaa392e3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzV8fHJvb218ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
+    price: 8000,
+    location: "Rajajinagar",
+    country: "India",
+  },
+  {
+    title: "Cozy PG in Kankurgachi",
+    description:
+      "Well-maintained PG in Kankurgachi, Kolkata. Perfect for students and professionals. Walking distance to Salt Lake and IT hub.",
+    image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzd8fHJvb218ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
+    price: 6500,
+    location: "Kankurgachi",
+    country: "India",
+  },
+
+  {
+    title: "Executive PG in Aerocity",
+    description:
+      "Luxury PG in Aerocity near Delhi Airport. Perfect for frequent travelers and corporate professionals. Premium amenities and connectivity.",
+    image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDZ8fHJvb218ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
+    price: 16000,
+    location: "Aerocity",
+    country: "India",
+  },
+
+  {
+    title: "Professional PG in DLF Phase 3",
+    description:
+      "Modern PG in DLF Phase 3, Gurgaon. High-speed Wi-Fi, backup power, and close to major corporate offices. Premium location and amenities.",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTB8fHJvb218ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
+    price: 14000,
+    location: "DLF Phase 3",
+    country: "India",
+  },
+  {
+    title: "Cozy PG in Jubilee Hills",
+    description:
+      "Upscale PG accommodation in Jubilee Hills. Premium location with AC, private bathroom, and balcony. Ideal for senior professionals.",
+    image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTJ8fHJvb218ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
+    price: 17500,
+    location: "Jubilee Hills",
+    country: "India",
+  },
+
+  {
+    title: "Girls PG in Safdarjung Enclave",
+    description:
+      "Secure and comfortable PG for working women in Safdarjung Enclave. 24/7 security, CCTV, and female staff. Premium South Delhi location.",
+    image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTZ8fHJvb218ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
+    price: 15000,
+    location: "Safdarjung Enclave",
+    country: "India",
+  }
 ];
 
 module.exports = { data: sampleListings };

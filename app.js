@@ -1,3 +1,4 @@
+
 const express= require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -21,10 +22,14 @@ const storage = multer.diskStorage({
         cb(null, 'uploads/')
     },
     filename: function (req, file, cb) {
-        cb(null, Date.now() + path.extname(file.originalname))
+        const ext = path.extname(file.originalname) || '.jpg'; // default to .jpg if no extension
+        cb(null, Date.now() + ext)
     }
 });
 const upload = multer({ storage: storage })
+
+// Import booking controller
+const bookingController = require("./controller/booking.js");
 
 
 
@@ -143,15 +148,24 @@ app.get("/listings/:id/edit",isLoggedIn,wrapAsync(async(req,res)=>{
     res.render("./listings/edit.ejs",{listing});
 }))
 
-app.put("/listings/:id",isLoggedIn,wrapAsync(async(req,res)=>{
+
+app.put("/listings/:id",isLoggedIn, upload.single('listing[image]'), wrapAsync(async(req,res)=>{
     const {id} = req.params;
     let listing = await Listing.findById(id);
     if(!listing.owner.equals(req.user._id)){
         req.flash("error","You are not the owner of this listing");
         return res.redirect(`/listings/${id}`);
     }
+    
     let updatedListing = req.body.listing;
-    await Listing.findByIdAndUpdate(id,{...req.body.listing});
+    
+    // Handle new image upload
+    if(req.file) {
+        updatedListing.image = '/uploads/' + req.file.filename;
+    }
+    // If no new image uploaded, keep the existing image
+    
+    await Listing.findByIdAndUpdate(id, updatedListing);
     req.flash("success" , "changes made successfully");
     res.redirect(`/listings/${id}`)
 }));
@@ -232,6 +246,7 @@ app.post("/login",saveRedirectUrl,
   });
 
 
+
 app.get("/logout",wrapAsync(async(req,res)=>{
     req.logout((err)=>{
         if(err){
@@ -242,6 +257,16 @@ app.get("/logout",wrapAsync(async(req,res)=>{
 
     })
 }));
+
+// Booking routes
+app.get("/bookings", isLoggedIn, bookingController.getUserBookings);
+app.get("/bookings/:bookingId", isLoggedIn, bookingController.getBookingDetails);
+app.get("/bookings/success/:bookingId", isLoggedIn, bookingController.bookingSuccess);
+app.post("/bookings/:listingId", isLoggedIn, bookingController.createBooking);
+app.get("/bookings/:listingId/availability", isLoggedIn, bookingController.checkAvailability);
+app.post("/bookings/:bookingId/cancel", isLoggedIn, bookingController.cancelBooking);
+
+
 
 
 

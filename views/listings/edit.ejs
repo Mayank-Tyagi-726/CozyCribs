@@ -1,54 +1,124 @@
+
 <% layout("/layouts/boilerplate") %>
-<div class="row">
-    <div class="col-8 offset-2">
-<body> 
-    <h1>Make changes to your listing....</h1>
-    <form action="/listings/<%=listing._id%>?_method=PUT" method="POST" class="needs-validation" novalidate>
+<div class="new-listing-container">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <div class="form-header">
+                    <h1 class="form-title">
+                        <i class="fas fa-edit"></i> Edit Listing
+                    </h1>
+                    <p class="form-subtitle">Update your amazing place details</p>
+                </div>
 
-    <div>
-            <label for="title" class="form-label">Title</label>
-             <input name="listing[title]" id="" placeholder="" value="<%=listing.title%>" class="form-control" required>
-    </div><br>
+                <div class="form-card">
+                    <form action="/listings/<%=listing._id%>?_method=PUT" method="POST" class="needs-validation" novalidate enctype="multipart/form-data">
 
 
-    <div><label for="description" class="form-label">Description</label>
-            <textarea name="listing[description]" id="" placeholder="" rows="5" cols="10" class="form-control" required><%=listing.description%></textarea>
+                        <div class="form-section">
+                            <h3 class="section-title">
+                                <i class="fas fa-info-circle"></i> Basic Information
+                            </h3>
 
-    </div><br>
+                            <div class="form-group">
+                                <label for="title" class="form-label">
+                                    <i class="fas fa-heading"></i> Title
+                                </label>
+                                <input type="text" name="listing[title]" placeholder="Add a catchy title" value="<%=listing.title%>" class="form-control" required>
+                                <div class="invalid-feedback">This is a required field</div>
+                                <div class="valid-feedback">This is something good and catchy!</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="description" class="form-label">
+                                    <i class="fas fa-align-left"></i> Description
+                                </label>
+                                <textarea name="listing[description]" placeholder="Describe your place..." class="form-control" rows="4" required><%=listing.description%></textarea>
+                                <div class="invalid-feedback">Please provide a description</div>
+                                <div class="valid-feedback">Great description!</div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3 class="section-title">
+                                <i class="fas fa-camera"></i> Media
+                            </h3>
+
+                            <div class="form-group">
+                                <label for="image" class="form-label">
+                                    <i class="fas fa-upload"></i> Update Image
+                                </label>
+                                <% if(listing.image && !listing.image.startsWith('/uploads/')) { %>
+                                    <div class="current-image">
+                                        <p><strong>Current Image (URL):</strong></p>
+                                        <img src="<%=listing.image%>" alt="Current image" style="max-width: 200px; border-radius: 8px; margin-bottom: 10px;">
+                                    </div>
+                                <% } else if(listing.image) { %>
+                                    <div class="current-image">
+                                        <p><strong>Current Image:</strong></p>
+                                        <img src="<%=listing.image%>" alt="Current image" style="max-width: 200px; border-radius: 8px; margin-bottom: 10px;">
+                                    </div>
+                                <% } %>
+                                <input type="file" name="listing[image]" class="form-control" accept="image/*" capture="environment">
+                                <small class="form-text text-muted">Upload a new image to replace the current one, or leave empty to keep existing image</small>
+                            </div>
+                        </div>
 
  
   
 
 
-    <div class="row">
-          <div class="col-md-4"><label for="price" class="form-label">Price</label>
-        <input name="listing[price]" id="" placeholder="" value="<%=listing.price%>" class="form-control" required>
 
-         <div class="col-md-8"><label for="Country" class="form-label">Country</label>
-        <input name="listing[country]" id="" placeholder="" value="<%=listing.country%>" class="form-control" required >
+                        <div class="form-section">
+                            <h3 class="section-title">
+                                <i class="fas fa-map-marked-alt"></i> Location & Pricing
+                            </h3>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="price" class="form-label">
+
+                                            <i class="fas fa-rupee-sign"></i> Price per month
+                                        </label>
+                                        <input type="number" name="listing[price]" placeholder="1200" value="<%=listing.price%>" class="form-control" required>
+                                        <div class="invalid-feedback">Please enter a valid price</div>
+                                        <div class="valid-feedback">Great price!</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="country" class="form-label">
+                                            <i class="fas fa-globe"></i> Country
+                                        </label>
+                                        <input type="text" name="listing[country]" placeholder="India" value="<%=listing.country%>" class="form-control" required>
+                                        <div class="invalid-feedback">Please enter your country</div>
+                                        <div class="valid-feedback">Nice!</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="location" class="form-label">
+                                    <i class="fas fa-map-marker-alt"></i> Location
+                                </label>
+                                <input type="text" name="listing[location]" placeholder="City, State" value="<%=listing.location%>" class="form-control" required>
+                                <div class="invalid-feedback">Please enter a valid location</div>
+                                <div class="valid-feedback">Perfect location!</div>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn add-listing-btn">
+                                <i class="fas fa-check"></i> Update Listing
+                            </button>
+                            <a href="/listings/<%=listing._id%>" class="btn cancel-btn">
+                                <i class="fas fa-times"></i> Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    </div>
-
-
-    </div>
-
-
-
-    <div><label for="Location" class="form-label">Location</label>
-        <input name="listing[location]" id="" placeholder="" class="form-control" value="<%=listing.location%>" required>
-    </div><br>
-
-
-   
-       <br>
-        
-             
-        
-        <button class="btn btn-dark edit-button">CONFIRM</button>
-        <br><br><br>
-<br>
-    </form>
-       
-</body>
-</div>
 </div>

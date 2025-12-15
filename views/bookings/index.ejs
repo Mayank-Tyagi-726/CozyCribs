@@ -1,0 +1,115 @@
+
+<% layout("/layouts/boilerplate") %>
+
+<div class="bookings-page-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="bookings-header">
+                    <h1 class="page-title">
+                        <i class="fas fa-calendar-alt"></i>
+                        My Bookings
+                    </h1>
+                    <p class="page-subtitle">Manage your reservations and view booking history</p>
+                </div>
+
+                <% if(bookings.length === 0) { %>
+                    <div class="no-bookings">
+                        <div class="no-bookings-content">
+                            <i class="fas fa-calendar-times"></i>
+                            <h3>No Bookings Yet</h3>
+                            <p>You haven't made any bookings yet. Start exploring our amazing properties!</p>
+                            <a href="/listings" class="btn btn-primary">
+                                <i class="fas fa-search"></i>
+                                Browse Properties
+                            </a>
+                        </div>
+                    </div>
+                <% } else { %>
+                    <div class="bookings-grid">
+                        <% bookings.forEach(booking => { %>
+                            <div class="booking-card">
+                                <div class="booking-image">
+                                    <img src="<%= booking.listing.image %>" alt="<%= booking.listing.title %>">
+                                    <div class="booking-status">
+                                        <span class="status-badge <%= booking.status %>">
+                                            <% if(booking.status === 'confirmed') { %>
+                                                <i class="fas fa-check-circle"></i> Confirmed
+                                            <% } else if(booking.status === 'pending') { %>
+                                                <i class="fas fa-clock"></i> Pending
+                                            <% } else if(booking.status === 'cancelled') { %>
+                                                <i class="fas fa-times-circle"></i> Cancelled
+                                            <% } else { %>
+                                                <i class="fas fa-check"></i> Completed
+                                            <% } %>
+                                        </span>
+                                    </div>
+                                </div>
+                                
+                                <div class="booking-content">
+                                    <div class="booking-property-info">
+                                        <h3 class="property-title"><%= booking.listing.title %></h3>
+                                        <p class="property-location">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                            <%= booking.listing.location %>, <%= booking.listing.country %>
+                                        </p>
+                                        <div class="booking-reference">
+                                            <i class="fas fa-ticket-alt"></i>
+                                            <span>Ref: <%= booking.bookingReference %></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="booking-dates">
+                                        <div class="date-info">
+                                            <div class="check-in">
+                                                <span class="date-label">Check-in</span>
+                                                <span class="date-value"><%= new Date(booking.checkIn).toLocaleDateString() %></span>
+                                            </div>
+                                            <div class="check-out">
+                                                <span class="date-label">Check-out</span>
+                                                <span class="date-value"><%= new Date(booking.checkOut).toLocaleDateString() %></span>
+                                            </div>
+                                        </div>
+                                        <div class="booking-duration">
+                                            <i class="fas fa-moon"></i>
+                                            <%= Math.ceil((new Date(booking.checkOut) - new Date(booking.checkIn)) / (1000 * 60 * 60 * 24)) %> nights
+                                        </div>
+                                    </div>
+
+                                    <div class="booking-details">
+                                        <div class="guests">
+                                            <i class="fas fa-users"></i>
+                                            <%= booking.guests %> guest<%= booking.guests > 1 ? 's' : '' %>
+                                        </div>
+                                        <div class="total-price">
+                                            <i class="fas fa-rupee-sign"></i>
+                                            ₹<%= booking.totalPrice.toLocaleString() %>
+                                        </div>
+                                    </div>
+
+                                    <div class="booking-actions">
+                                        <a href="/bookings/<%= booking._id %>" class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-eye"></i>
+                                            View Details
+                                        </a>
+                                        
+                                        <% if(booking.status === 'confirmed' && new Date(booking.checkIn) > new Date()) { %>
+                                            <form action="/bookings/<%= booking._id %>/cancel" method="POST" style="display: inline;">
+                                                <button type="submit" class="btn btn-sm btn-outline-danger" 
+                                                        onclick="return confirm('Are you sure you want to cancel this booking?')">
+                                                    <i class="fas fa-times"></i>
+                                                    Cancel
+                                                </button>
+                                            </form>
+                                        <% } %>
+                                    </div>
+                                </div>
+                            </div>
+                        <% }) %>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>
+

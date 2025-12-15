@@ -9,11 +9,18 @@ let listingSchema = new mongoose.Schema({
      description:{
         type:String
     },
+
      image:{
         type:String,
         default:"https://unsplash.com/photos/coconut-tree-near-shore-within-mountain-range-RN6ts8IZ4_0",
-        set:(v)=>v===""?"https://unsplash.com/photos/coconut-tree-near-shore-within-mountain-range-RN6ts8IZ4_0":v
-    },
+        set:(v)=> {
+            // If v is empty string, set default
+            if(v === "" || v === undefined) {
+                return "https://unsplash.com/photos/coconut-tree-near-shore-within-mountain-range-RN6ts8IZ4_0";
+            }
+            return v;
+        }
+     },
      price:{
         type:Number
     },

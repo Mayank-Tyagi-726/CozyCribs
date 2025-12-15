@@ -1,24 +1,77 @@
+
 <% layout("/layouts/boilerplate") %>
-<div class="row">
-    <h1 class="col-8 offset-2">Login CozyCribs</h1>
-    <div class="col-8 offset-2">
-        <form action="/login" method="POST" place class="needs-validation" novalidate><br>
-        
-<div>
-            <label for="username" class="form-label">username</label>
-        <input type="text" name="username" class="form-control" required id="username">
-</div>
 
+<body>
+    <div class="auth-container">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 col-md-7 col-sm-9">
+                    <div class="auth-card">
+                        <div class="auth-header">
+                            <i class="fas fa-sign-in-alt auth-title-icon"></i>
+                            <h1 class="auth-title">Welcome Back</h1>
+                            <p class="auth-subtitle">Sign in to your CozyCribs account</p>
+                        </div>
+                        
+                        <form action="/login" method="POST" class="auth-form needs-validation" novalidate>
+                            <div class="form-group">
+                                <label for="username" class="form-label">
+                                    <i class="fas fa-user"></i>
+                                    Username
+                                </label>
+                                <input type="text" 
+                                       name="username" 
+                                       class="form-control" 
+                                       required 
+                                       id="username"
+                                       placeholder="Enter your username"
+                                       autocomplete="username">
+                                <div class="invalid-feedback">
+                                    Please provide a valid username.
+                                </div>
+                            </div>
 
+                            <div class="form-group">
+                                <label for="password" class="form-label">
+                                    <i class="fas fa-lock"></i>
+                                    Password
+                                </label>
+                                <input type="password" 
+                                       name="password" 
+                                       class="form-control" 
+                                       required 
+                                       id="password"
+                                       placeholder="Enter your password"
+                                       autocomplete="current-password">
+                                <div class="invalid-feedback">
+                                    Please provide your password.
+                                </div>
+                            </div>
 
-<div>
-            <label for="password" class="form-label">password</label>
-        <input type="text" name="password" class="form-control" required id="password">
-</div>
-<br><br><br>
+                            <button type="submit" class="auth-btn">
+                                <i class="fas fa-sign-in-alt"></i>
+                                Sign In
+                            </button>
+                        </form>
 
-<button class="btn btn-success">Login</button>
-
-
+                        <div class="auth-links">
+                            <p class="auth-switch">
+                                Don't have an account? 
+                                <a href="/signup" class="auth-link">
+                                    <i class="fas fa-user-plus"></i>
+                                    Sign Up
+                                </a>
+                            </p>
+                            <p class="auth-forgot">
+                                <a href="#" class="forgot-link">
+                                    <i class="fas fa-question-circle"></i>
+                                    Forgot your password?
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+</body>

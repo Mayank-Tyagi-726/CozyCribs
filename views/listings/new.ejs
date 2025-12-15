@@ -41,13 +41,15 @@
                                 <i class="fas fa-camera"></i> Media
                             </h3>
 
+
                             <div class="form-group">
                                 <label for="image" class="form-label">
                                     <i class="fas fa-upload"></i> Upload Image
                                 </label>
-                                <input type="file" name="listing[image]" class="form-control" accept="image/*" required>
+                                <input type="file" name="listing[image]" class="form-control" accept="image/*" capture="environment" required>
                                 <div class="invalid-feedback">Please upload an image</div>
                                 <div class="valid-feedback">Perfect image!</div>
+                                <small class="form-text text-muted">Tap the camera icon to take a photo or select from gallery</small>
                             </div>
                         </div>
 
@@ -60,7 +62,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="price" class="form-label">
-                                            <i class="fas fa-rupee-sign"></i> Price per night
+
+                                            <i class="fas fa-rupee-sign"></i> Price per month
                                         </label>
                                         <input type="number" name="listing[price]" placeholder="1200" class="form-control" required>
                                         <div class="invalid-feedback">Please enter a valid price</div>

@@ -1,0 +1,119 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="booking-success-container">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <div class="success-card">
+                    <div class="success-header">
+                        <div class="success-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h1 class="success-title">Booking Confirmed!</h1>
+                        <p class="success-subtitle">Your reservation has been successfully confirmed</p>
+                    </div>
+
+                    <div class="booking-details-card">
+                        <h3 class="booking-ref">
+                            <i class="fas fa-ticket-alt"></i>
+                            Booking Reference: <%= booking.bookingReference %>
+                        </h3>
+
+                        <div class="booking-info-grid">
+                            <div class="info-section">
+                                <h4><i class="fas fa-home"></i> Property Details</h4>
+                                <div class="info-row">
+                                    <span class="label">Property:</span>
+                                    <span class="value"><%= booking.listing.title %></span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="label">Location:</span>
+                                    <span class="value"><%= booking.listing.location %>, <%= booking.listing.country %></span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="label">Price per month:</span>
+                                    <span class="value">₹<%= booking.listing.price %></span>
+                                </div>
+                            </div>
+
+                            <div class="info-section">
+                                <h4><i class="fas fa-calendar-alt"></i> Stay Details</h4>
+                                <div class="info-row">
+                                    <span class="label">Check-in:</span>
+                                    <span class="value"><%= new Date(booking.checkIn).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %></span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="label">Check-out:</span>
+                                    <span class="value"><%= new Date(booking.checkOut).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %></span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="label">Duration:</span>
+                                    <span class="value"><%= Math.ceil((new Date(booking.checkOut) - new Date(booking.checkIn)) / (1000 * 60 * 60 * 24)) %> nights</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="label">Guests:</span>
+                                    <span class="value"><%= booking.guests %> guest<%= booking.guests > 1 ? 's' : '' %></span>
+                                </div>
+                            </div>
+
+                            <div class="info-section">
+                                <h4><i class="fas fa-rupee-sign"></i> Payment Details</h4>
+                                <div class="info-row">
+                                    <span class="label">Total Amount:</span>
+                                    <span class="value total-price">₹<%= booking.totalPrice.toLocaleString() %></span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="label">Status:</span>
+                                    <span class="value status-badge confirmed">
+                                        <i class="fas fa-check-circle"></i>
+                                        <%= booking.status.charAt(0).toUpperCase() + booking.status.slice(1) %>
+                                    </span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="label">Payment:</span>
+                                    <span class="value status-badge paid">
+                                        <i class="fas fa-credit-card"></i>
+                                        <%= booking.paymentStatus.charAt(0).toUpperCase() + booking.paymentStatus.slice(1) %>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <% if (booking.specialRequests) { %>
+                            <div class="special-requests">
+                                <h4><i class="fas fa-sticky-note"></i> Special Requests</h4>
+                                <p><%= booking.specialRequests %></p>
+                            </div>
+                        <% } %>
+                    </div>
+
+                    <div class="success-actions">
+                        <a href="/bookings/<%= booking._id %>" class="btn btn-primary">
+                            <i class="fas fa-eye"></i>
+                            View Booking Details
+                        </a>
+                        <a href="/bookings" class="btn btn-secondary">
+                            <i class="fas fa-list"></i>
+                            My Bookings
+                        </a>
+                        <a href="/listings" class="btn btn-outline-primary">
+                            <i class="fas fa-search"></i>
+                            Browse More Properties
+                        </a>
+                    </div>
+
+                    <div class="success-footer">
+                        <p>
+                            <i class="fas fa-envelope"></i>
+                            A confirmation email has been sent to <strong><%= booking.user.email %></strong>
+                        </p>
+                        <p>
+                            <i class="fas fa-info-circle"></i>
+                            For any questions, please contact our support team.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
