@@ -104,15 +104,16 @@ Copy code
 ---
 
 ## ⚙️ Local Setup
-
-1. Clone the repository  
+# Clone the repository
 git clone https://github.com/Mayank-Tyagi-726/CozyCribbs.git
+
+# Move into the project directory
 cd CozyCribbs
 
-2. Install the dependencies
+# Install all dependencies
 npm install
 
-3. Run command
+# Start the server
 node app.js
 
 
