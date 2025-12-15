@@ -76,11 +76,9 @@ Copy code
 ---
 
 ## 📸 Screenshots
-
+-Landing Page
 ![Landing Page](screenshot/home.png)
-_Add screenshots inside a `screenshots/` folder and reference them below._
 
-- Home Page  
 - PG Listings Page  
 - Search & Filter View  
 - Listing Details Page  
