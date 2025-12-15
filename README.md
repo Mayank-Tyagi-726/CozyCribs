@@ -6,9 +6,16 @@ CozyCribbs is a full-stack PG (Paying Guest) listing and booking web application
 
 ## 🎯 Motivation
 
-Finding affordable and well-managed PG accommodations is a common challenge for students and working professionals. The goal of CozyCribbs was to understand how real-world listing platforms work under the hood and to build a structured, scalable web application that handles listings, user sessions, bookings, and availability logic.
+Finding affordable and well-managed PG accommodations is a common challenge for students and working professionals. CozyCribbs was built as a hands-on learning project to understand how real-world listing and booking platforms work under the hood.
 
-This project was built as a **hands-on learning and engineering exercise**, emphasizing backend development with Node.js, database modeling using MongoDB, and server-side rendering with EJS.
+**This project focuses on:**
+- Backend development using Node.js and Express.js
+- MVC architecture and clean code organization
+- Authentication and session management
+- Database modeling with MongoDB and Mongoose
+- Server-side rendering using EJS
+- Booking and availability logic implementation
+
 
 ---
 
