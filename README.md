@@ -106,33 +106,15 @@ Copy code
 ## ⚙️ Local Setup
 
 1. Clone the repository  
-2. Install dependencies  
-   ```bash
-   npm install
-Create a .env file
+git clone https://github.com/Mayank-Tyagi-726/CozyCribbs.git
+cd CozyCribbs
 
-env
-Copy code
-MONGO_URL=your_mongodb_connection_string
-SESSION_SECRET=your_secret_key
-Run the application
+2. Install the dependencies
+npm install
 
-bash
-Copy code
+3. Run command
 node app.js
-The application runs on:
 
-arduino
-Copy code
-http://localhost:3000
-🧪 Project Status
-Core functionality implemented
-
-Payments intentionally not included
-
-Admin dashboard not implemented
-
-Built primarily for learning, internships, and portfolio demonstration
 
 📚 Learning Outcomes
 Practical experience with full-stack web development
